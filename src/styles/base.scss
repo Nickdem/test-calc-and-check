@@ -1,9 +1,29 @@
+@use "header";
+@use "mixins" as m;
+@use "colors" as c;
+
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 body {
   font-family: "Roboto", sans-serif;
-  font-size: 10px;
-  font-weight: 400;
   font-style: normal;
+  @include m.textOpt(10px);
+  color: c.$black;
+  background-color: c.$white;
+}
+
+main {
+  @include m.paddings($pt: 20px, $pb: 20px);
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1240px;
+  @include m.paddings($pl: 20px, $pr: 20px);
+  @include m.margins($ml: auto, $mr: auto);
 }

@@ -8,18 +8,42 @@
     <link href="./css/index.min.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="./index.html">Калькулятор</a></li>
-          <li><a href="./checkboxes.html">Чекбоксы</a></li>
+    <header class="header">
+      <nav class="header__navigation navigation">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a
+              class="navigation__link navigation__link--active"
+              href="./index.html"
+            >
+              Калькулятор
+            </a>
+          </li>
+          <li class="navigation__item">
+            <a class="navigation__link" href="./checkboxes.html">Чекбоксы</a>
+          </li>
         </ul>
       </nav>
     </header>
     <main>
-      <section>
-        <article></article>
-        <aside></aside>
+      <section class="container calculator">
+        <article class="calculator__info">
+          <h1 class="calculator__title">Калькулятор корма еды</h1>
+          <p class="calculator__description">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos
+            repudiandae quibusdam voluptates accusantium tempora consectetur
+            dolorum odio fugit minus nulla!
+          </p>
+        </article>
+        <aside class="calculator__content">
+          <form class="calculator__form">
+            <select name="" id=""></select>
+            <select name="" id=""></select>
+            <div class="radiogroup"><input type="radio" /></div>
+            <input type="number" />
+            <button>Расчитать</button>
+          </form>
+        </aside>
       </section>
     </main>
     <script src="./js/index.min.js"></script>

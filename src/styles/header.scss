@@ -1,0 +1,45 @@
+@use "mixins" as m;
+@use "colors" as c;
+
+.header {
+  @include m.paddings(20px, 20px, 20px, 20px);
+  box-sizing: border-box;
+  background-color: c.$blueviolet;
+  box-shadow: 0 0 15px c.$black;
+}
+
+.navigation {
+  text-align: center;
+
+  &__list {
+    @include m.flexContainer($jc: center, $ai: center, $g: 20px);
+  }
+
+  &__link {
+    color: c.$white;
+    @include m.textOpt(1.6em);
+    @include m.position($p: relative);
+    display: block;
+
+    &::before {
+      content: "";
+      @include m.sizes(0, 1px);
+      @include m.position($p: absolute, $b: 0, $l: 0);
+      transition: all 0.22s;
+      background-color: c.$white;
+    }
+
+    &:hover::before {
+      @include m.sizes(100%, 1px);
+    }
+
+    &--active {
+      color: darken(c.$white, 20%);
+
+      &::before {
+        @include m.sizes(100%, 1px);
+        background-color: darken(c.$white, 20%);
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+@mixin paddings($pt: false, $pr: false, $pb: false, $pl: false) {
+  @if ($pt) {
+    padding-top: $pt;
+  }
+  @if ($pr) {
+    padding-right: $pr;
+  }
+  @if ($pb) {
+    padding-bottom: $pb;
+  }
+  @if ($pl) {
+    padding-left: $pl;
+  }
+}
+
+@mixin margins($mt: false, $mr: false, $mb: false, $ml: false) {
+  @if ($mt) {
+    margin-top: $mt;
+  }
+  @if ($mr) {
+    margin-right: $mr;
+  }
+  @if ($mb) {
+    margin-bottom: $mb;
+  }
+  @if ($ml) {
+    margin-left: $ml;
+  }
+}
+
+@mixin textOpt($s, $w: 400) {
+  font-size: $s;
+  line-height: calc($s + 8px);
+  font-weight: $w;
+}
+
+@mixin flexContainer(
+  $fd: row,
+  $jc: start,
+  $ai: stretch,
+  $g: normal,
+  $fw: nowrap
+) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-wrap: $fw;
+  row-gap: $g;
+  column-gap: $g;
+}
+
+@mixin position(
+  $p: static,
+  $t: false,
+  $r: false,
+  $b: false,
+  $l: false,
+  $trX: false
+) {
+  position: $p;
+
+  @if ($t) {
+    top: $t;
+  }
+
+  @if ($r) {
+    right: $r;
+  }
+
+  @if ($b) {
+    bottom: $b;
+  }
+
+  @if ($l) {
+    left: $l;
+  }
+
+  @if ($trX) {
+    transform: translateX(-50%);
+  }
+}
+
+@mixin sizes($w: initial, $h: initial) {
+  width: $w;
+  height: $h;
+}

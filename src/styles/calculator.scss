@@ -1,0 +1,19 @@
+@use "mixins" as m;
+
+.calculator {
+  @include m.flexContainer($jc: space-between, $ai: center);
+  @include m.paddings($pt: 4em);
+
+  &__info {
+    max-width: 550px;
+  }
+
+  &__title {
+    @include m.textOpt(32px);
+    @include m.margins($mb: 1em);
+  }
+
+  &__description {
+    @include m.textOpt(18px);
+  }
+}

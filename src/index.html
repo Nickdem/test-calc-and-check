@@ -30,28 +30,32 @@
         <article class="calculator__info">
           <h1 class="calculator__title">Калькулятор корма еды</h1>
           <p class="calculator__description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos
-            repudiandae quibusdam voluptates accusantium tempora consectetur
-            dolorum odio fugit minus nulla!
+            Для расчёта необходимо ввести данные о питомце в форму: порода,
+            возраст, активность, а также вес.
           </p>
         </article>
         <aside class="calculator__content">
           <form class="calculator__form">
             <div class="calculator__control">
               <label class="calculator__label" for="breed">Порода:</label>
-              <select class="calculator__select" id="breed" required>
+              <select
+                class="calculator__select"
+                id="breed"
+                name="breed"
+                required
+              >
                 <option value="" hidden disabled selected>Выбрать</option>
-                <option value="Овчарка">Овчарка</option>
-                <option value="Лабрадор">Лабрадор</option>
+                <option value="shepherdDog">Овчарка</option>
+                <option value="labrador">Лабрадор</option>
               </select>
             </div>
             <div class="calculator__control">
               <label class="calculator__label" for="age">Возраст:</label>
-              <select class="calculator__select" id="age" required>
+              <select class="calculator__select" name="age" id="age" required>
                 <option value="" hidden disabled selected>Выбрать</option>
-                <option value="Дитя">Меньше 1 года</option>
-                <option value="Молодой">от 1 года до 5 лет</option>
-                <option value="Взрослый">Более 5 лет</option>
+                <option value="lessOne">Меньше 1 года</option>
+                <option value="oneToFive">от 1 года до 5 лет</option>
+                <option value="moreFive">Более 5 лет</option>
               </select>
             </div>
             <div class="calculator__control">
@@ -78,16 +82,17 @@
               <input
                 type="number"
                 id="weight"
+                name="weight"
                 min="0"
                 max="30"
                 step="1"
-                value="1"
+                value=""
                 required
               />
             </div>
-            <button class="calculator__button">Расчитать</button>
+            <button type="submit" class="calculator__button">Расчитать</button>
           </form>
-          <h2 class="calculator__result">Итог: <span>0</span> грамм</h2>
+          <h2 class="calculator__result">Итог - <span>0</span> гр.</h2>
         </aside>
       </section>
     </main>

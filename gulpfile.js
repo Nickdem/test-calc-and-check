@@ -26,8 +26,8 @@ const stylesInput = "src/styles/**/*.scss";
 const stylesOutput = "dist/css/";
 const scriptsInput = ["src/scripts/index.ts", "src/scripts/checkboxes.ts"];
 const scriptsOutput = "dist/js/";
-const imgInput = "src/img/**";
-const imgOutput = "dist/img/";
+const imgInput = "src/images/**";
+const imgOutput = "dist/images/";
 
 function clean() {
   return del(["dist/*", "!dist/img"]);

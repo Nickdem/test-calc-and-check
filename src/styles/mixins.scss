@@ -81,7 +81,10 @@
   }
 }
 
-@mixin sizes($w: initial, $h: initial) {
+@mixin sizes($w: initial, $h: false) {
   width: $w;
-  height: $h;
+
+  @if ($h) {
+    height: $h;
+  }
 }

@@ -2,7 +2,7 @@
 @use "colors" as c;
 
 .header {
-  @include m.paddings(20px, 20px, 20px, 20px);
+  @include m.paddings(2em, 2em, 2em, 2em);
   box-sizing: border-box;
   background-color: c.$blueviolet;
   box-shadow: 0 0 15px c.$black;
@@ -12,32 +12,33 @@
   text-align: center;
 
   &__list {
-    @include m.flexContainer($jc: center, $ai: center, $g: 20px);
+    @include m.flexContainer($jc: center, $ai: center, $g: 2em);
   }
 
   &__link {
     color: c.$white;
-    @include m.textOpt(1.6em);
+    @include m.textOpt($s: 1.8em, $w: 700);
     @include m.position($p: relative);
     display: block;
 
     &::before {
       content: "";
-      @include m.sizes(0, 1px);
-      @include m.position($p: absolute, $b: 0, $l: 0);
+      @include m.sizes(0, 2px);
+      @include m.position($p: absolute, $b: 5px, $l: 0);
+      border-radius: 2px;
       transition: all 0.22s;
       background-color: c.$white;
     }
 
     &:hover::before {
-      @include m.sizes(100%, 1px);
+      @include m.sizes(100%);
     }
 
     &--active {
       color: darken(c.$white, 20%);
 
       &::before {
-        @include m.sizes(100%, 1px);
+        @include m.sizes(100%);
         background-color: darken(c.$white, 20%);
       }
     }

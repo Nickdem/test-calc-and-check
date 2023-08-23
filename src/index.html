@@ -37,12 +37,57 @@
         </article>
         <aside class="calculator__content">
           <form class="calculator__form">
-            <select name="" id=""></select>
-            <select name="" id=""></select>
-            <div class="radiogroup"><input type="radio" /></div>
-            <input type="number" />
-            <button>Расчитать</button>
+            <div class="calculator__control">
+              <label class="calculator__label" for="breed">Порода:</label>
+              <select class="calculator__select" id="breed" required>
+                <option value="" hidden disabled selected>Выбрать</option>
+                <option value="Овчарка">Овчарка</option>
+                <option value="Лабрадор">Лабрадор</option>
+              </select>
+            </div>
+            <div class="calculator__control">
+              <label class="calculator__label" for="age">Возраст:</label>
+              <select class="calculator__select" id="age" required>
+                <option value="" hidden disabled selected>Выбрать</option>
+                <option value="Дитя">Меньше 1 года</option>
+                <option value="Молодой">от 1 года до 5 лет</option>
+                <option value="Взрослый">Более 5 лет</option>
+              </select>
+            </div>
+            <div class="calculator__control">
+              <p class="calculator__label">Активность:</p>
+              <input
+                type="radio"
+                name="activity"
+                id="temperate"
+                value="temperate"
+                required
+              />
+              <label class="calculator__label" for="temperate">Умеренный</label>
+              <input
+                type="radio"
+                name="activity"
+                id="active"
+                value="active"
+                required
+              />
+              <label class="calculator__label" for="active">Активный</label>
+            </div>
+            <div class="calculator__control">
+              <label class="calculator__label" for="weight">Вес:</label>
+              <input
+                type="number"
+                id="weight"
+                min="0"
+                max="30"
+                step="1"
+                value="1"
+                required
+              />
+            </div>
+            <button class="calculator__button">Расчитать</button>
           </form>
+          <h2 class="calculator__result">Итог: <span>0</span> грамм</h2>
         </aside>
       </section>
     </main>

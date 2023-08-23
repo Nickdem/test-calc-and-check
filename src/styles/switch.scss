@@ -1,0 +1,50 @@
+@use "mixins" as m;
+@use "colors" as c;
+
+.switch {
+  text-align: center;
+
+  & input {
+    opacity: 0;
+    @include m.sizes(0, 0);
+    @include m.margins(0, 0, 0, 0);
+  }
+
+  & label {
+    @include m.position($p: relative);
+    display: inline-block;
+    @include m.paddings($pl: 3em);
+    cursor: pointer;
+    @include m.textOpt(20px);
+  }
+
+  & label::before {
+    content: "";
+    @include m.position($p: absolute, $t: 0, $l: 0);
+    background-color: lighten(c.$blueviolet, 40%);
+    transition: all 0.22s;
+    border-radius: 0.8em;
+    @include m.sizes(2.6em, 1.3em);
+  }
+
+  & label::after {
+    @include m.position($p: absolute, $b: 5px, $l: 3px);
+    content: "";
+    @include m.sizes(1em, 1em);
+    background-color: c.$white;
+    transition: all 0.22s;
+    border-radius: 50%;
+  }
+
+  & input:checked + label::before {
+    background-color: c.$blueviolet;
+  }
+
+  & input:focus + label::before {
+    outline: 1px solid c.$black;
+  }
+
+  & input:checked + label::after {
+    transform: translateX(1.3em);
+  }
+}

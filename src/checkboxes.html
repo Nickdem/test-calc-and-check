@@ -8,7 +8,54 @@
     <link href="./css/checkboxes.min.css" rel="stylesheet" />
   </head>
   <body>
-    <a href="./index.html">123</a>
+    <header class="header">
+      <nav class="header__navigation navigation">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a class="navigation__link" href="./index.html"> Калькулятор </a>
+          </li>
+          <li class="navigation__item">
+            <a
+              class="navigation__link navigation__link--active"
+              href="./checkboxes.html"
+              >Чекбоксы</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="switch">
+        <input type="checkbox" id="switch" name="switch" />
+        <label for="switch">Admin</label>
+      </div>
+      <section class="container checkboxes">
+        <ul class="checkboxes__list">
+          <li class="checkboxes__item item">
+            <div>
+              <input type="checkbox" name="first" id="first" />
+              <label for="first">Подготовительные работы</label>
+            </div>
+            <ul class="checkboxes__sublist">
+              <li class="checkboxes__subitem">
+                <div class="">
+                  <input type="checkbox" name="first1" id="first1" />
+                  <label for="first1">Подготовительные работы 1</label>
+                  <a href="#">Прочитать инструкцию</a>
+                </div>
+              </li>
+              <li class="checkboxes__subitem">
+                <div class="">
+                  <input type="checkbox" name="first2" id="first2" />
+                  <label for="first2">Подготовительные работы 2</label>
+                  <a href="#">Прочитать инструкцию</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </main>
     <script src="./js/checkboxes.min.js"></script>
   </body>
 </html>

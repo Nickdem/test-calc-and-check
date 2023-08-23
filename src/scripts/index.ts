@@ -20,6 +20,10 @@ const baseValues: IBaseValues = {
 };
 
 window.addEventListener("DOMContentLoaded", () => {
+  calculator();
+});
+
+const calculator = () => {
   const formEl: HTMLFormElement = document.querySelector(".calculator__form"),
     breedSelect: HTMLSelectElement = formEl.querySelector('[name="breed"]'),
     ageSelect: HTMLSelectElement = formEl.querySelector('[name="age"]'),
@@ -68,7 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     formEl.parentElement.insertAdjacentElement("beforeend", resetBtn);
   };
-});
+};
 
 const getResult = (
   breed: string,
@@ -90,5 +94,5 @@ const getResult = (
     result *= 1.3;
   }
 
-  return result.toString();
+  return Math.round(result).toString();
 };

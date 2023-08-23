@@ -1,0 +1,11 @@
+{
+  "files": ["src/scripts/index.ts", "src/scripts/checkboxes.ts"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "target": "ES2020",
+    "module": "CommonJS"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

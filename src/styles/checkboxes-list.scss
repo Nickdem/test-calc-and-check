@@ -1,0 +1,76 @@
+@use "mixins" as m;
+@use "colors" as c;
+
+.checkboxes {
+  @include m.margins($mt: 4em);
+  &__item div,
+  &__subitem div {
+    @include m.margins($mb: 1em);
+  }
+
+  &__subitem div {
+    @include m.margins($ml: 4em);
+  }
+
+  &__sublist--hide {
+    display: none;
+  }
+}
+
+.item {
+  & div {
+    background-color: lighten(c.$blueviolet, 40%);
+    @include m.paddings(1em, 2em, 1em, 2em);
+    @include m.flexContainer($ai: center, $jc: space-between);
+  }
+
+  & input {
+    opacity: 0;
+    @include m.sizes(0, 0);
+    @include m.margins(0, 0, 0, 0);
+  }
+
+  & label {
+    @include m.textOpt(1.6em);
+
+    @include m.paddings($pl: 2em);
+    display: block;
+    @include m.position($p: relative);
+  }
+
+  & label::before {
+    content: "";
+    display: block;
+    @include m.sizes(16px, 16px);
+    @include m.position($p: absolute, $t: 0.5em, $l: 0px);
+    box-shadow: 0 0 0 1px c.$white, 0 0 0 3px c.$blueviolet;
+  }
+
+  & input[type="checkbox"]:focus:not(:hover) + label::before {
+    outline: 6px solid c.$black;
+  }
+
+  & input[type="checkbox"]:hover + label {
+    outline: none;
+    opacity: 0.8;
+  }
+
+  & input[type="checkbox"]:checked + label::before {
+    box-shadow: inset 0 0 0 8px c.$blueviolet, 0 0 0 1px c.$white,
+      0 0 0 3px c.$blueviolet;
+  }
+
+  & a,
+  & button {
+    @include m.textOpt(1.6em, 700);
+    justify-self: center;
+    color: c.$blueviolet;
+    flex-grow: 1;
+    text-align: right;
+  }
+
+  & button {
+    border: none;
+    background-color: transparent;
+  }
+}

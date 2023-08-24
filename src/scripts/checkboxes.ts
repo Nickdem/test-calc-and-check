@@ -1,4 +1,14 @@
-const baseData = [
+type IBaseData = IBaseDataObject[];
+
+interface IBaseDataObject {
+  itemName: string;
+  itemId: string;
+  itemList?: IBaseDataObject[];
+  itemLink?: string;
+  itemNew?: boolean;
+}
+
+const baseData: IBaseData = [
   {
     itemName: "Подготовительные работы",
     itemId: "jobs",
@@ -130,29 +140,54 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 const checkboxes = () => {
-  const listEl = document.querySelector(".checkboxes__list"),
-    listBtns = listEl.querySelectorAll("button"),
-    listInputs: NodeListOf<HTMLInputElement> =
-      listEl.querySelectorAll(".item > div input");
+  const listEl = document.querySelector(".checkboxes__list");
+  listEl.innerHTML = "";
 
-  // listEl.innerHTML = ''
-  listBtns.forEach((listBtn) => {
-    listBtn.addEventListener("click", () => {
-      listBtn.innerText =
-        listBtn.innerText == "Раскрыть" ? "Скрыть" : "Раскрыть";
-      const subListEl = listBtn.parentElement.nextElementSibling;
+  makeCheckboxList(baseData);
+};
+
+const makeCheckboxList = (dataArr: IBaseData) => {
+  const sectionEl = document.querySelector(".checkboxes__list");
+  dataArr.forEach((listItem) => {
+    sectionEl.append(makeListItem(listItem));
+  });
+};
+
+const makeListItem = (item: IBaseDataObject) => {
+  const itemEl = document.createElement("li");
+  const wrapperEl = document.createElement("div");
+  const inputEl = document.createElement("input");
+  inputEl.setAttribute("type", "checkbox");
+  inputEl.setAttribute("id", item.itemId);
+  inputEl.setAttribute("name", item.itemId);
+  const labelEl = document.createElement("label");
+  labelEl.setAttribute("for", item.itemId);
+  labelEl.textContent = item.itemName;
+  wrapperEl.append(inputEl, labelEl);
+  itemEl.append(wrapperEl);
+
+  if (item.itemList) {
+    itemEl.classList.add("checkboxes__item", "item");
+    const subListEl = document.createElement("ul");
+    subListEl.classList.add("checkboxes__sublist", "checkboxes__sublist--hide");
+    const btnEl = document.createElement("button");
+    btnEl.textContent = "Раскрыть";
+    btnEl.addEventListener("click", () => {
+      btnEl.innerText = btnEl.innerText == "Раскрыть" ? "Скрыть" : "Раскрыть";
       subListEl.classList.toggle("checkboxes__sublist--hide");
     });
-  });
+    wrapperEl.append(btnEl);
 
-  listInputs.forEach((listInput) => {
-    const subListEl = listInput.parentElement.nextElementSibling;
+    item.itemList.forEach((subItem) => {
+      subListEl.append(makeListItem(subItem));
+    });
+
     const subListInputs: NodeListOf<HTMLInputElement> =
       subListEl.querySelectorAll('[type="checkbox"]');
 
-    listInput.addEventListener("change", () => {
+    inputEl.addEventListener("change", () => {
       subListInputs.forEach(
-        (subListInput) => (subListInput.checked = listInput.checked)
+        (subListInput) => (subListInput.checked = inputEl.checked)
       );
     });
 
@@ -161,11 +196,24 @@ const checkboxes = () => {
         const subListCheckedInputs =
           subListEl.querySelectorAll("input:checked");
         if (subListInputs.length == subListCheckedInputs.length) {
-          listInput.checked = true;
+          inputEl.checked = true;
         } else {
-          listInput.checked = false;
+          inputEl.checked = false;
         }
       });
     });
-  });
+
+    itemEl.append(subListEl);
+  }
+
+  if (!item.itemList) {
+    itemEl.classList.add("checkboxes__subitem");
+    const linkEl = document.createElement("a");
+    linkEl.textContent = "Прочитать инструкцию";
+    linkEl.setAttribute("href", item.itemLink);
+    linkEl.setAttribute("target", "_blank");
+    wrapperEl.append(linkEl);
+  }
+
+  return itemEl;
 };

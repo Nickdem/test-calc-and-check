@@ -124,3 +124,48 @@ const baseData = [
     ],
   },
 ];
+
+window.addEventListener("DOMContentLoaded", () => {
+  checkboxes();
+});
+
+const checkboxes = () => {
+  const listEl = document.querySelector(".checkboxes__list"),
+    listBtns = listEl.querySelectorAll("button"),
+    listInputs: NodeListOf<HTMLInputElement> =
+      listEl.querySelectorAll(".item > div input");
+
+  // listEl.innerHTML = ''
+  listBtns.forEach((listBtn) => {
+    listBtn.addEventListener("click", () => {
+      listBtn.innerText =
+        listBtn.innerText == "Раскрыть" ? "Скрыть" : "Раскрыть";
+      const subListEl = listBtn.parentElement.nextElementSibling;
+      subListEl.classList.toggle("checkboxes__sublist--hide");
+    });
+  });
+
+  listInputs.forEach((listInput) => {
+    const subListEl = listInput.parentElement.nextElementSibling;
+    const subListInputs: NodeListOf<HTMLInputElement> =
+      subListEl.querySelectorAll('[type="checkbox"]');
+
+    listInput.addEventListener("change", () => {
+      subListInputs.forEach(
+        (subListInput) => (subListInput.checked = listInput.checked)
+      );
+    });
+
+    subListInputs.forEach((subListInput) => {
+      subListInput.addEventListener("change", () => {
+        const subListCheckedInputs =
+          subListEl.querySelectorAll("input:checked");
+        if (subListInputs.length == subListCheckedInputs.length) {
+          listInput.checked = true;
+        } else {
+          listInput.checked = false;
+        }
+      });
+    });
+  });
+};

@@ -32,7 +32,7 @@
 
   & label {
     @include m.textOpt(1.6em);
-
+    cursor: pointer;
     @include m.paddings($pl: 2em);
     display: block;
     @include m.position($p: relative);
@@ -67,6 +67,7 @@
     color: c.$blueviolet;
     flex-grow: 1;
     text-align: right;
+    cursor: pointer;
   }
 
   & button {

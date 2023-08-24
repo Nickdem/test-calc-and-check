@@ -189,17 +189,20 @@ const makeListItem = (item: IBaseDataObject) => {
       subListInputs.forEach(
         (subListInput) => (subListInput.checked = inputEl.checked)
       );
+      progressBar();
     });
 
     subListInputs.forEach((subListInput) => {
       subListInput.addEventListener("change", () => {
         const subListCheckedInputs =
           subListEl.querySelectorAll("input:checked");
+
         if (subListInputs.length == subListCheckedInputs.length) {
           inputEl.checked = true;
         } else {
           inputEl.checked = false;
         }
+        progressBar();
       });
     });
 
@@ -216,4 +219,20 @@ const makeListItem = (item: IBaseDataObject) => {
   }
 
   return itemEl;
+};
+
+const progressBar = () => {
+  const fillEl: HTMLDivElement = document.querySelector(".progress__fill");
+  const progressValueEl = document.querySelector(".progress__value");
+  const allSubCheckboxes = document.querySelectorAll(
+    '.checkboxes__sublist [type="checkbox"]'
+  );
+  const allSubCheckedCheckboxes = document.querySelectorAll(
+    '.checkboxes__sublist [type="checkbox"]:checked'
+  );
+  const percent =
+    (allSubCheckedCheckboxes.length / allSubCheckboxes.length) * 100;
+
+  progressValueEl.textContent = percent.toString();
+  fillEl.style.width = percent.toString() + "%";
 };

@@ -1,0 +1,31 @@
+@use "mixins" as m;
+@use "colors" as c;
+
+.progress {
+  @include m.margins($mt: 2em);
+
+  &__bar {
+    box-sizing: border-box;
+    @include m.sizes(200px, 40px);
+    @include m.margins($ml: auto, $mr: auto);
+    background-color: transparent;
+    border: 1px solid c.$blueviolet;
+    text-align: center;
+    border-radius: 2em;
+    overflow: hidden;
+    @include m.position($p: relative);
+  }
+
+  &__fill {
+    @include m.position($p: absolute, $t: 0, $l: 0);
+    @include m.sizes(0%, 40px);
+    background-color: lighten(c.$blueviolet, 40%);
+    border-radius: 2em;
+    transition: all 0.22s;
+  }
+
+  &__text {
+    @include m.position($p: absolute, $t: 1em, $l: 50%, $trX: true);
+    @include m.sizes(100%);
+  }
+}

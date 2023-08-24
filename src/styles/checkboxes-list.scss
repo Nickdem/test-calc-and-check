@@ -8,6 +8,17 @@
     @include m.margins($mb: 1em);
   }
 
+  &__item,
+  &__subitem {
+    @include m.position($p: relative);
+
+    & .new {
+      background-color: c.$blueviolet;
+      color: c.$white;
+      @include m.position($p: absolute, $r: -5px, $t: -5px);
+    }
+  }
+
   &__subitem div {
     @include m.margins($ml: 4em);
   }
@@ -24,7 +35,7 @@
     @include m.flexContainer($ai: center, $jc: space-between);
   }
 
-  & input {
+  & input[type="checkbox"] {
     opacity: 0;
     @include m.sizes(0, 0);
     @include m.margins(0, 0, 0, 0);
@@ -33,12 +44,27 @@
   & label {
     @include m.textOpt(1.6em);
     cursor: pointer;
-    @include m.paddings($pl: 2em);
     display: block;
+  }
+
+  & input[type="text"] {
+    @include m.margins($ml: 1em, $mr: 1em);
+    background-color: c.$white;
+    border: 1px solid c.$blueviolet;
+    border-radius: 4px;
+    @include m.paddings(0.6em, 0.6em, 0.6em, 0.6em);
+    @include m.textOpt(14px, 700);
+    flex-basis: 150px;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+
+  & input[type="checkbox"] + label {
+    @include m.paddings($pl: 2em);
     @include m.position($p: relative);
   }
 
-  & label::before {
+  & input[type="checkbox"] + label::before {
     content: "";
     display: block;
     @include m.sizes(16px, 16px);
@@ -73,5 +99,11 @@
   & button {
     border: none;
     background-color: transparent;
+  }
+
+  & button[data-id="remove"] {
+    flex-grow: 0;
+    color: c.$white;
+    background-color: c.$blueviolet;
   }
 }

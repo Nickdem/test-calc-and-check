@@ -88,20 +88,22 @@
 
   & a,
   & button {
-    @include m.textOpt(1.6em, 700);
-    justify-self: center;
-    color: c.$blueviolet;
-    flex-grow: 1;
     text-align: right;
     cursor: pointer;
+    flex-grow: 1;
   }
 
-  & button {
-    border: none;
+  &__transparent,
+  & a {
     background-color: transparent;
+    @include m.textOpt(1.6em, 700);
+    color: c.$blueviolet;
+    border: none;
   }
 
-  & button[data-id="remove"] {
+  & .button {
+    @include m.textOpt(1.6em, 700);
+    border: none;
     flex-grow: 0;
     color: c.$white;
     background-color: c.$blueviolet;

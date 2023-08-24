@@ -27,3 +27,12 @@ a {
   @include m.paddings($pl: 20px, $pr: 20px);
   @include m.margins($ml: auto, $mr: auto);
 }
+
+.btn__create {
+  color: c.$blueviolet;
+  background-color: lighten(c.$blueviolet, 40%);
+  @include m.textOpt(1.6em, 700);
+  @include m.paddings(5px, 10px, 5px, 10px);
+  @include m.margins($mt: 1em, $mb: 4em, $ml: auto);
+  display: block;
+}

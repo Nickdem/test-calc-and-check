@@ -212,6 +212,7 @@ const makeListItem = (item: IBaseDataObject) => {
     subListEl.classList.add("checkboxes__sublist", "checkboxes__sublist--hide");
     const btnEl = document.createElement("button");
     btnEl.textContent = "Раскрыть";
+    btnEl.classList.add("item__transparent");
     btnEl.addEventListener("click", () => {
       btnEl.innerText = btnEl.innerText == "Раскрыть" ? "Скрыть" : "Раскрыть";
       subListEl.classList.toggle("checkboxes__sublist--hide");
@@ -296,6 +297,32 @@ const makeEditorItems = (dataArr: IBaseData) => {
   dataArr.forEach((listItem) => {
     sectionEl.append(makeEditorForm(listItem));
   });
+
+  const createBtnEl = document.createElement("button");
+  createBtnEl.classList.add("btn__create");
+  createBtnEl.textContent = "Создать новый элемент";
+
+  createBtnEl.addEventListener("click", () => {
+    baseData.push({
+      itemName: "Базовое значение",
+      itemId: "id" + Date.now().toString(),
+      status: false,
+      itemList: [
+        {
+          itemName: "Базовое значение",
+          itemId: "id" + Date.now().toString(),
+          status: false,
+          itemLink: "https://www.google.com/",
+          itemNew: true,
+        },
+      ],
+      itemNew: true,
+    });
+
+    editor();
+  });
+
+  sectionEl.append(createBtnEl);
 };
 
 const makeEditorForm = (item: IBaseDataObject) => {
@@ -311,8 +338,9 @@ const makeEditorForm = (item: IBaseDataObject) => {
   labelEl.textContent = "Название:";
   const saveBtnEl = document.createElement("button");
   saveBtnEl.textContent = "Сохранить";
+  saveBtnEl.classList.add("item__transparent");
   const delBtnEl = document.createElement("button");
-  delBtnEl.setAttribute("data-id", "remove");
+  delBtnEl.classList.add("button");
   delBtnEl.textContent = "Удалить";
   wrapperEl.append(labelEl, inputEl);
   itemEl.append(wrapperEl);
@@ -339,6 +367,23 @@ const makeEditorForm = (item: IBaseDataObject) => {
       }
     });
     itemEl.append(subListEl);
+    const createBtnEl = document.createElement("button");
+    createBtnEl.classList.add("btn__create");
+    createBtnEl.textContent = "Создать новый сабэлемент";
+    createBtnEl.addEventListener("click", () => {
+      console.log(item.itemList);
+
+      item.itemList.push({
+        itemName: "Базовое значение",
+        itemId: "id" + Date.now().toString(),
+        status: false,
+        itemLink: "https://www.google.com/",
+        itemNew: true,
+      });
+
+      editor();
+    });
+    itemEl.append(createBtnEl);
   }
 
   if (!item.itemList) {

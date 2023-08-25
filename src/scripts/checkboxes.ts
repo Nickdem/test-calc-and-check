@@ -339,6 +339,8 @@ const makeEditorForm = (item: IBaseDataObject) => {
   const saveBtnEl = document.createElement("button");
   saveBtnEl.textContent = "Сохранить";
   saveBtnEl.classList.add("item__transparent");
+  saveBtnEl.disabled = true;
+  saveBtnEl.style.opacity = "0";
   const delBtnEl = document.createElement("button");
   delBtnEl.classList.add("button");
   delBtnEl.textContent = "Удалить";
@@ -350,12 +352,21 @@ const makeEditorForm = (item: IBaseDataObject) => {
     const subListEl = document.createElement("ul");
     subListEl.classList.add("checkboxes__sublist");
 
+    inputEl.addEventListener("change", () => {
+      saveBtnEl.disabled = false;
+      saveBtnEl.style.opacity = "1";
+    });
+
     item.itemList.forEach((subItem) => {
       subListEl.append(makeEditorForm(subItem));
     });
+
     saveBtnEl.addEventListener("click", () => {
       item.itemName = inputEl.value;
+      saveBtnEl.disabled = true;
+      saveBtnEl.style.opacity = "0";
     });
+
     delBtnEl.addEventListener("click", () => {
       const answ = confirm("Вы уверены?");
       if (answ) {
@@ -397,9 +408,22 @@ const makeEditorForm = (item: IBaseDataObject) => {
     labelLinkEl.setAttribute("for", "link-" + item.itemId);
     labelLinkEl.textContent = "Ссылка:";
     wrapperEl.append(labelLinkEl, inputLinkEl);
+
+    inputEl.addEventListener("change", () => {
+      saveBtnEl.disabled = false;
+      saveBtnEl.style.opacity = "1";
+    });
+
+    inputLinkEl.addEventListener("change", () => {
+      saveBtnEl.disabled = false;
+      saveBtnEl.style.opacity = "1";
+    });
+
     saveBtnEl.addEventListener("click", () => {
       item.itemName = inputEl.value;
       item.itemLink = inputLinkEl.value;
+      saveBtnEl.disabled = true;
+      saveBtnEl.style.opacity = "0";
     });
 
     delBtnEl.addEventListener("click", () => {

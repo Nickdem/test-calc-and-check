@@ -93,6 +93,11 @@
     flex-grow: 1;
   }
 
+  & button:disabled {
+    pointer-events: none;
+    color: lighten(c.$white, 80%);
+  }
+
   &__transparent,
   & a {
     background-color: transparent;

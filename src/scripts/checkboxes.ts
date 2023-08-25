@@ -33,6 +33,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// checkbox-list
+
 const checkboxes = () => {
   makeCheckboxList(baseData);
   progressBar();
@@ -132,21 +134,7 @@ const makeListItem = (item: IBaseDataObject) => {
   return itemEl;
 };
 
-const progressBar = () => {
-  const fillEl: HTMLDivElement = document.querySelector(".progress__fill");
-  const progressValueEl = document.querySelector(".progress__value");
-  const allSubCheckboxes = document.querySelectorAll(
-    '.checkboxes__sublist [type="checkbox"]'
-  );
-  const allSubCheckedCheckboxes = document.querySelectorAll(
-    '.checkboxes__sublist [type="checkbox"]:checked'
-  );
-  const percent =
-    (allSubCheckedCheckboxes.length / allSubCheckboxes.length) * 100;
-
-  progressValueEl.textContent = Math.round(percent).toString();
-  fillEl.style.width = percent.toString() + "%";
-};
+// editor
 
 const editor = () => {
   makeEditorItems(baseData);
@@ -295,6 +283,24 @@ const makeEditorForm = (item: IBaseDataObject) => {
   wrapperEl.append(saveBtnEl, delBtnEl);
 
   return itemEl;
+};
+
+// progressbar
+
+const progressBar = () => {
+  const fillEl: HTMLDivElement = document.querySelector(".progress__fill");
+  const progressValueEl = document.querySelector(".progress__value");
+  const allSubCheckboxes = document.querySelectorAll(
+    '.checkboxes__sublist [type="checkbox"]'
+  );
+  const allSubCheckedCheckboxes = document.querySelectorAll(
+    '.checkboxes__sublist [type="checkbox"]:checked'
+  );
+  const percent =
+    (allSubCheckedCheckboxes.length / allSubCheckboxes.length) * 100;
+
+  progressValueEl.textContent = Math.round(percent).toString();
+  fillEl.style.width = percent.toString() + "%";
 };
 
 // utils

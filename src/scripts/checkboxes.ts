@@ -97,6 +97,8 @@ const makeListItem = (item: IBaseDataObject) => {
         subListInput.checked = inputEl.checked;
       });
 
+      toLocalStorage(baseData);
+
       progressBar();
     });
 
@@ -114,6 +116,7 @@ const makeListItem = (item: IBaseDataObject) => {
           inputEl.checked = false;
           item.status = inputEl.checked;
         }
+        toLocalStorage(baseData);
 
         progressBar();
       });
